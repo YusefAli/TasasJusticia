@@ -1,0 +1,93 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALCULO TASA JUDICIAL</title>
+    
+
+	<link rel="stylesheet" href="css/jquery.mobile-1.3.1.min.css" />
+	<script src="js/jquery-1.9.1.min.js"></script>
+	<script src="js/jquery.mobile-1.3.1.min.js"></script>
+	
+</head>
+<SCRIPT LANGUAGE="JavaScript">
+function calcular() {
+			  	var fija = $('input[name="fija"]:checked').val();
+			    
+			    var variable=0;
+			    if($('input[name="variable1"]').val()<1000000)
+			    {
+			    	 variable = $('input[name="variable1"]').val() * 0.005;
+			    }
+			    else
+			    {
+			    	variable = 1000000 * 0.005 + ($('input[name="variable1"]').val()-1000000) * 0.0025;
+			    }
+			    
+			    if(document.getElementById("telematico").checked)
+			    {
+			    	$('input[name="total"]').val((parseFloat(variable)+parseFloat(fija)) * 0.9);
+			    }
+				else
+				{
+					$('input[name="total"]').val(parseFloat(variable)+parseFloat(fija));
+				}
+	}
+</SCRIPT><SCRIPT LANGUAGE="JavaScript">
+
+	function handleSocialShare()
+	{
+	     window.location = "compartirTasasmio"+$('input[name="total"]').val();
+	}
+</SCRIPT>
+
+<div data-role="page">	
+<br>
+<br>
+<br>
+<br>
+<h3>A. CANTIDAD FIJA:</h3>
+	<div data-role="collapsible" data-theme="b" data-content-theme="d" data-inset="false">
+	<h4>CIVIL</h4>
+		<label><input  type="radio" id="radio0" name="fija" value="150"/>Verbal y Cambiario (150€)</label>
+		<label><input  type="radio" id="radio1" name="fija" value="300"/>Ordinario (300€)</label>
+		<label><input  type="radio" id="radio2" name="fija" value="100"/>Incidente Concursal (100€)</label>
+		<label><input  type="radio" id="radio3" name="fija" value="100"/>Monitorio y Monitorio Europeo  (100€)</label>
+		<label><input  type="radio" id="radio4" name="fija" value="200"/>Títulos Extrajudiciales y Oposición Ejecución de Títulos Judiciales  (200€)</label>
+		<label><input  type="radio" id="radio5" name="fija" value="200"/>Concurso necesario  (200€)</label>
+		<label><input  type="radio" id="radio6" name="fija" value="800"/>Apelación  (800€)</label>
+		<label><input  type="radio" id="radio7" name="fija" value="1200"/>Casación y de Infracción Procesal  (1.200€)</label>
+		<hr>
+	</div>
+	<div data-role="collapsible" data-theme="b" data-content-theme="d" data-inset="false">
+	<h4>CONTENCIOSO-ADMINISTRATIVO</h4>
+		<label><input  type="radio" id="radio8" name="fija" value="200"/>Abreviado (200€)</label>
+		<label><input  type="radio" id="radio9" name="fija" value="350"/>Ordinario (350€)</label>
+		<label><input  type="radio" id="radio10" name="fija" value="800"/>Apelación (800€)</label>
+		<label><input  type="radio" id="radio11" name="fija" value="1200"/>Casación (1.200€)</label>
+	</div>
+	<div data-role="collapsible" data-theme="b" data-content-theme="d" data-inset="false">
+	<h4>SOCIAL</h4>
+		<label><input  type="radio" id="radio0" name="fija" value="500"/>Suplicación (500€)</label>
+		<label><input  type="radio" id="radio0" name="fija" value="1200"/>Casación (750€)</label>
+	</div>
+	<h3>B. CANTIDAD VARIABLE:</h3>
+	<p>Cuantía del procedimiento: <input type="number" data-theme="b" data-clear-btn="true" pattern="[0-9]*" name="variable1" min="0" max="1000000" step="50"/><p>
+		<label><input type="checkbox" id="telematico" name="telematico" data-mini="true"/>Envío telemático (10% descuento)</label>
+	<hr>
+	<a href="#popupBasic" data-role="button" data-rel="popup" theme="a" data-theme="e" data-overlay-theme="a" onclick="calcular();">calcular</a>
+	<div id="popupBasic" data-role="popup">
+		<a href="#" data-rel="back" data-transition="slidedown" data-role="button" data-theme="e" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+		<br>
+		<br>
+		<h1>TOTAL:<input type="number" name="total" disabled="disabled" value="0"/></h1>
+		<a href="#popupBasic" data-role="button" data-mini="true" onclick="handleSocialShare();">Compartir</a>
+	</div>
+	<br>
+	<br>
+	<a href="https://www.administraciondejusticia.gob.es/paj/publico/ciudadano/servicios/tramites/tasas_judiciales">MAS INFO OFICIAL</a>
+	<br> 
+	<a href="http://www.boe.es/buscar/pdf/2012/BOE-A-2012-14301-consolidado.pdf">pdf del BOE Ley de Tasas</a> 
+</div>
+
+</html>
